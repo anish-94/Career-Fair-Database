@@ -3,7 +3,7 @@ CREATE TABLE `Student`(
   `first_name` varchar(255) not null,
   `last_name` varchar(255) not null,
   `GPA` float,
-  `graduation_data` date,
+  `graduation_date` date,
   `major` varchar(255),
   primary key (`id`)
 );
@@ -27,7 +27,6 @@ CREATE TABLE `Company`(
   `id` int auto_increment not null,
   `hiring_major` varchar(255),
   `location` varchar(255) not null,
-  `date` date,
   primary key (`id`)
 );
 
