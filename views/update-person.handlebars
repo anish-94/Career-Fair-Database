@@ -1,13 +1,10 @@
-<h1>Update {{person.fname}} {{person.lname}}:</h1>
+<h1>Update {{Student.first_name}} {{Student.last_name}}:</h1>
 <form id="update-person" action="/people" method="post">
-    First name: <input type="text" name="fname" value="{{person.fname}}"><br>
-    Last name: <input type="text" name="lname" value="{{person.lname}}"><br>
-    Homeworld: <select name="homeworld" id="planet-selector"> 
-        {{#each planets}}
-        <option value="{{id}}">{{name}}</option>
-        {{/each}}
-    </select><br>
-    Age: <input type="number" name="age" value="{{person.age}}"><br>
+  First name: <input type="text" name="first_name"><br>
+  Last name: <input type="text" name="last_name"><br>
+  GPA: <input type="float" name ="GPA"><br>
+  Graduation date (IE: 2018-09-10) <input type="text" name="graduation_date"><br>
+  Major <input type="text" name="major"><br>
 </form>
-<button onclick="updatePerson({{person.id}})">Update</button>
+<button onclick="updatePerson({{Student.id}})">Update</button>
 <script defer>selectPlanet({{person.homeworld}});</script>
