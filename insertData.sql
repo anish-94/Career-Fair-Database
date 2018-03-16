@@ -24,3 +24,17 @@ INSERT INTO Company (`name`, `hiring_major`, `location`) VALUES
 					("Amazon", "Computer Science", "Seattle, WA"),
 					("Spotify", "Computer Science", "New York, NY"),
 					("Capital One", "Business", "Seattle, WA");
+
+INSERT INTO Enrolled (`studentID`, `universityID`) VALUES 
+			( (SELECT id from Student WHERE first_name="Adam" AND last_name="Lowd"),
+			  (SELECT id from University WHERE name="Oregon State University") )
+
+INSERT INTO Hosts (`eventID`, `universityID`) VALUES
+			( (SELECT id from Event INNER JOIN University ON Event.location=University.location),
+			  (SELECT id from University INNER JOIN Event ON Event.location=University.location ) )
+
+INSERT INTO Attends_Student (`studentID`, `eventID`) VALUES
+			( (1, 1), (2, 2), (3, 3), (4, 4), (5, 5) )
+
+INSERT INTO Attends_Employee (`companyID`, `eventID`) VALUES
+			( (1, 1), (2, 2), (3, 3), (4, 4), (5, 5) )
