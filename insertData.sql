@@ -6,7 +6,7 @@ INSERT INTO Student (`first_name`, `last_name`, `GPA`, `graduation_date`, `major
 					("Todd", "Chavez", 3.23, "2020-06-15", "Business");
 
 INSERT INTO University (`name`, `location`) VALUES
-						("Oregon State University", "Corvallis OR"),
+						("Oregon State University", "Corvallis, OR"),
 						("University of Washington", "Seattle, WA"),
 						("New York University", "New York, NY"),
 						("University of Michigan", "Ann Harbor, MI"),
@@ -26,14 +26,15 @@ INSERT INTO Company (`name`, `hiring_major`, `location`) VALUES
 					("Capital One", "Business", "Seattle, WA");
 
 INSERT INTO Enrolled (`studentID`, `universityID`) VALUES 
-			( (1, 1), (2, 2), (3, 3), (4, 4), (5, 5) );
+			(1, 1), (2, 2), (3, 3), (4, 4), (5, 5);
 
 INSERT INTO Hosts (`eventID`, `universityID`) VALUES
-			( (SELECT Event.id from Event INNER JOIN University ON Event.location=University.location),
-			  (SELECT University.id from University INNER JOIN Event ON Event.location=University.location ) );
+			(1, 1), (2, 2), (3, 3), (4, 4), (5, 5)
+#			((SELECT Event.id from Event INNER JOIN University ON Event.location=University.location),
+#			  (SELECT University.id from University INNER JOIN Event ON Event.location=University.location));
 
 INSERT INTO Attends_Student (`studentID`, `eventID`) VALUES
-			( (1, 1), (2, 2), (3, 3), (4, 4), (5, 5) );
+			(1, 1), (2, 2), (3, 3), (4, 4), (5, 5);
 
 INSERT INTO Attends_Employee (`companyID`, `eventID`) VALUES
-			( (1, 1), (2, 2), (3, 3), (4, 4), (3, 5) );
+			(1, 1), (2, 2), (3, 3), (4, 4), (3, 5);
