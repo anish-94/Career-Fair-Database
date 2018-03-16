@@ -96,7 +96,7 @@ module.exports = function(){
     router.put('/:id', function(req, res){
         var mysql = req.app.get('mysql');
         var sql = "UPDATE Student SET first_name=?, last_name=?, GPA=?, graduation_date=?, major=? WHERE id=?";
-        var inserts = [req.body.first_name, req.body.last_name, req.body.GPA, req.body.graduation_date req.body.major, req.params.id];
+        var inserts = [req.body.first_name, req.body.last_name, req.body.GPA, req.body.graduation_date, req.body.major, req.params.id];
         sql = mysql.pool.query(sql,inserts,function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
