@@ -25,6 +25,7 @@ CREATE TABLE `Event`(
 
 CREATE TABLE `Company`(
   `id` int auto_increment not null,
+  `name` varchar(255) not null,
   `hiring_major` varchar(255),
   `location` varchar(255) not null,
   primary key (`id`)
