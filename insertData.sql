@@ -1,9 +1,9 @@
 INSERT INTO Student (`first_name`, `last_name`, `GPA`, `graduation_date`, `major`) VALUES
-					("Adam", "Lowd", "2019-03-06", "Computer Science"),
-					("Jaden", "Smith", "2024-06-15", "Business"),
-					("Diane", "Nguyen", "2018-06-15", "Computer Science"),
-					("Mister", "Peanutbutter", "2019-03-15","Business"),
-					("Todd", "Chavez", "2020-06-15", "Business");
+					("Adam", "Lowd", 3.23,  "2019-03-06", "Computer Science"),
+					("Jaden", "Smith", 3.23, "2024-06-15", "Business"),
+					("Diane", "Nguyen", 3.23,"2018-06-15", "Computer Science"),
+					("Mister", "Peanutbutter", 3.23,"2019-03-15","Business"),
+					("Todd", "Chavez", 3.23, "2020-06-15", "Business");
 
 INSERT INTO University (`name`, `location`) VALUES
 						("Oregon State University", "Corvallis OR"),
@@ -24,4 +24,3 @@ INSERT INTO Company (`name`, `hiring_major`, `location`) VALUES
 					("Amazon", "Computer Science", "Seattle, WA"),
 					("Spotify", "Computer Science", "New York, NY"),
 					("Capital One", "Business", "Seattle, WA");
-
