@@ -29,7 +29,7 @@ INSERT INTO Enrolled (`studentID`, `universityID`) VALUES
 			(1, 1), (2, 2), (3, 3), (4, 4), (5, 5);
 
 INSERT INTO Hosts (`eventID`, `universityID`) VALUES
-			(1, 1), (2, 2), (3, 3), (4, 4), (5, 5)
+			(1, 1), (2, 2), (3, 3), (4, 4), (5, 5);
 #			((SELECT Event.id from Event INNER JOIN University ON Event.location=University.location),
 #			  (SELECT University.id from University INNER JOIN Event ON Event.location=University.location));
 

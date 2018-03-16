@@ -39,7 +39,7 @@ module.exports = function(){
                 res.write(JSON.stringify(error));
                 res.end();
             }
-            context.person = results[0];
+            context.person = results[id];
 
             complete();
         });
