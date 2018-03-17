@@ -2,6 +2,17 @@ module.exports = function(){
     var express = require('express');
     var router = express.Router();
 
+    function getEvents(res, mysql, context, complete){
+      //mysql.pool.query("SELECT Event.id, name, location, date FROM Event", function(error, results, fields){
+      mysql.pool.query("SELECT Event.id, Event.name, Event.location, Event.date, University.name AS university FROM Event JOIN University ON (hosted_at_university=University.id)", function(error, results, fields){
+          if(error){
+              res.write(JSON.stringify(error));
+              res.end();
+          }
+          context.events = results;
+          complete();
+      });
+    }
 
     function getPeople(res, mysql, context, complete){
         //mysql.pool.query("SELECT bsg_people.id, fname, lname, bsg_planets.name AS homeworld, age FROM bsg_people INNER JOIN bsg_planets ON homeworld = bsg_planets.id", function(error, results, fields){
@@ -50,9 +61,10 @@ module.exports = function(){
         var mysql = req.app.get('mysql');
         getPeople(res, mysql, context, complete);
         getUnivs(res, mysql, context, complete);
+        getEvents(res, mysql, context, complete);
         function complete(){
             callbackCount++;
-            if(callbackCount >= 2){
+            if(callbackCount >= 3){
                 res.render('people', context);
             }
         }

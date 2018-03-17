@@ -16,6 +16,9 @@ CREATE TABLE `Student`(
   `GPA` float,
   `graduation_date` date,
   `major` varchar(255),
+  `attends_university` int(11) default null,
+  key `attends_university` (`attends_university`),
+  constraint `attends_student_fk` foreign key(`attends_university`) references University(`id`) ON DELETE CASCADE,
   primary key (`id`)
 );
 
@@ -23,6 +26,7 @@ CREATE TABLE `University`(
   `id` int(11) auto_increment not null,
   `name` varchar(255) not null,
   `location` varchar(255) not null,
+  unique key `name` (`name`),
   primary key (`id`)
 )ENGINE=InnoDB;
 
@@ -31,6 +35,9 @@ CREATE TABLE `Event`(
   `name` varchar(255) not null,
   `location` varchar(255) not null,
   `date` date,
+  `hosted_at_university` int(11) default null,
+  key `hosted_at_university` (`hosted_at_university`),
+  constraint `attends_event_fk` foreign key(`hosted_at_university`) references University(`id`) ON DELETE CASCADE,
   primary key (`id`)
 )ENGINE=InnoDB;
 
@@ -40,24 +47,6 @@ CREATE TABLE `Company`(
   `hiring_major` varchar(255),
   `location` varchar(255) not null,
   primary key (`id`)
-)ENGINE=InnoDB;
-
-CREATE TABLE `Enrolled`(
-  `id` int(11) not null auto_increment,
-  `studentID` int(11) not null,
-  `universityID` int(11) not null,
-  primary key (`id`),
-  constraint `enrolled_ibfk_1` foreign key(`studentID`) references Student(`id`) ON DELETE CASCADE,
-  constraint `enrolled_ibfk_2` foreign key(`universityID`) references University(`id`) ON DELETE CASCADE
-)ENGINE=InnoDB;
-
-CREATE TABLE `Hosts`(
-  `id` int(11) not null auto_increment,
-  `eventID` int,
-  `universityID` int,
-  primary key (`id`),
-  constraint `hosts_ibfk_1` foreign key(`eventID`) references Event(`id`) ON DELETE CASCADE,
-  constraint `hosts_ibfk_2` foreign key(`universityID`) references University(`id`) ON DELETE CASCADE
 )ENGINE=InnoDB;
 
 CREATE TABLE `Attends_Student`(
@@ -78,12 +67,12 @@ CREATE TABLE `Attends_Employee`(
   constraint `attends_employee_ibfk_2` foreign key(`eventID`) references Event(`id`) ON DELETE CASCADE
 )ENGINE=InnoDB;
 
-INSERT INTO Student (`first_name`, `last_name`, `GPA`, `graduation_date`, `major`) VALUES
-					("Adam", "Lowd", 3.23,  "2019-03-06", "Computer Science"),
-					("Jaden", "Smith", 3.23, "2024-06-15", "Business"),
-					("Diane", "Nguyen", 3.23,"2018-06-15", "Computer Science"),
-					("Mister", "Peanutbutter", 3.23,"2019-03-15","Business"),
-					("Todd", "Chavez", 3.23, "2020-06-15", "Business");
+INSERT INTO Student (`first_name`, `last_name`, `GPA`, `graduation_date`, `major`, `attends_university`) VALUES
+					("Adam", "Lowd", 3.23,  "2019-03-06", "Computer Science",2),
+					("Jaden", "Smith", 3.23, "2024-06-15", "Business",1),
+					("Diane", "Nguyen", 3.23,"2018-06-15", "Computer Science",5),
+					("Mister", "Peanutbutter", 3.23,"2019-03-15","Business",3),
+					("Todd", "Chavez", 3.23, "2020-06-15", "Business",4);
 
 INSERT INTO University (`name`, `location`) VALUES
 						("Oregon State University", "Corvallis, OR"),
@@ -92,26 +81,18 @@ INSERT INTO University (`name`, `location`) VALUES
 						("University of Michigan", "Ann Harbor, MI"),
 						("University of Idaho", "Boise, ID");
 
-INSERT INTO Event (`name`, `location`, `date`) VALUES
-				  ("Baby Got Hack", "Corvallis, OR", "2018-04-15"),
-				  ("Networking Night", "Seattle, WA", "2019-01-12"),
-				  ("Career Fair 2018", "New York, NY", "2018-09-10"),
-				  ("HackOverflow", "Ann Harbor, MI", "2019-02-28"),
-				  ("Resume Review", "Boise, ID", "2018-12-05");
+INSERT INTO Event (`name`, `location`, `date`, `hosted_at_university`) VALUES
+				  ("Baby Got Hack", "Corvallis, OR", "2018-04-15",1),
+				  ("Networking Night", "Seattle, WA", "2019-01-12",2),
+				  ("Career Fair 2018", "New York, NY", "2018-09-10",3),
+				  ("HackOverflow", "Ann Harbor, MI", "2019-02-28",4),
+				  ("Resume Review", "Boise, ID", "2018-12-05",5);
 
 INSERT INTO Company (`name`, `hiring_major`, `location`) VALUES
 					("Deloitte", "Business", "New York, NY"),
 					("Amazon", "Computer Science", "Seattle, WA"),
 					("Spotify", "Computer Science", "New York, NY"),
 					("Capital One", "Business", "Seattle, WA");
-
-INSERT INTO Enrolled (`studentID`, `universityID`) VALUES
-			(1, 1), (2, 2), (3, 3), (4, 4), (5, 5);
-
-INSERT INTO Hosts (`eventID`, `universityID`) VALUES
-			(1, 1), (2, 2), (3, 3), (4, 4), (5, 5);
-#			((SELECT Event.id from Event INNER JOIN University ON Event.location=University.location),
-#			  (SELECT University.id from University INNER JOIN Event ON Event.location=University.location));
 
 INSERT INTO Attends_Student (`studentID`, `eventID`) VALUES
 			(1, 1), (2, 2), (3, 3), (4, 4), (5, 5);
