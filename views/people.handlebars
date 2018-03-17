@@ -38,3 +38,35 @@
 
 
 </table>
+
+<h3>Events</h3>
+<table>
+    <thead>
+        <th>Name</th>
+        <th>Location</th>
+        <th>Date</th>
+    </thead>
+    <tbody>
+        {{#each events}}
+        <tr>
+            <td>{{name}}</td>
+            <td>{{location}}</td>
+            <td>{{date}}</td>
+          <!--
+            <td><button onclick="deletePerson({{id}})">Delete</button></td>
+            <td><a href="/people/{{id}}">Update</a></td>
+          -->
+        </tr>
+        {{/each}}
+    </tbody>
+  <!--
+    <form id="addperson" action="/people" method="post">
+    First name: <input type="text" name="first_name"><br>
+    Last name: <input type="text" name="last_name"><br>
+    GPA: <input type="float" name ="GPA"><br>
+    Graduation date (IE: 2018-09-10) <input type="text" name="graduation_date"><br>
+    Major <input type="text" name="major"><br>
+    <input type="submit" value="Submit">
+    </form>
+  -->
+</table>
