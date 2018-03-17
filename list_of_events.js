@@ -52,7 +52,7 @@ module.exports = function(){
         function complete(){
             callbackCount++;
             if(callbackCount >= 3){
-                res.render('people', context);
+                res.render('list_of_events', context);
             }
         }
     });
@@ -69,7 +69,7 @@ module.exports = function(){
                 res.write(JSON.stringify(error));
                 res.end();
             }else{
-                res.redirect('/people');
+                res.redirect('/list_of_events');
             }
         });
     });
@@ -83,7 +83,7 @@ module.exports = function(){
                 res.write(JSON.stringify(error));
                 res.end();
             }else{
-                res.redirect('/people');
+                res.redirect('/list_of_events');
             }
         });
     });
@@ -97,7 +97,7 @@ module.exports = function(){
                 res.write(JSON.stringify(error));
                 res.end();
             }else{
-                res.redirect('/people');
+                res.redirect('/list_of_events');
             }
         });
     });
