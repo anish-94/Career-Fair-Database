@@ -7,7 +7,7 @@ DROP TABLE IF EXISTS `Company`;
 DROP TABLE IF EXISTS `Enrolled`;
 DROP TABLE IF EXISTS `Hosts`;
 DROP TABLE IF EXISTS `Attends_Student`;
-DROP TABLE IF EXISTS `Attends_Employee`;
+DROP TABLE IF EXISTS `Attends_Company`;
 
 CREATE TABLE `Student`(
   `id` int auto_increment not null,
@@ -58,7 +58,7 @@ CREATE TABLE `Attends_Student`(
   constraint `attends_student_ibfk_2` foreign key(`eventID`) references Event(`id`) ON DELETE CASCADE
 )ENGINE=InnoDB;
 
-CREATE TABLE `Attends_Employee`(
+CREATE TABLE `Attends_Company`(
   `id` int(11) not null auto_increment,
   `companyID` int,
   `eventID` int,
@@ -97,7 +97,7 @@ INSERT INTO Company (`name`, `hiring_major`, `location`) VALUES
 INSERT INTO Attends_Student (`studentID`, `eventID`) VALUES
 			(1, 1), (2, 2), (3, 3), (4, 4), (5, 5);
 
-INSERT INTO Attends_Employee (`companyID`, `eventID`) VALUES
+INSERT INTO Attends_Company (`companyID`, `eventID`) VALUES
 			(1, 1), (2, 2), (3, 3), (4, 4), (3, 5);
 
 SET FOREIGN_KEY_CHECKS=1;
