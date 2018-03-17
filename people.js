@@ -16,6 +16,17 @@ module.exports = function(){
         });
     }
 
+    function getUnivs(res, mysql, context, complete){
+        mysql.pool.query("SELECT id, name FROM University", function(error, results, fields){
+            if(error){
+                res.write(JSON.stringify(error));
+                res.end();
+            }
+            context.univs = results;
+            complete();
+        });
+    }
+
     function getPerson(res, mysql, context, id, complete){
         //var sql = "SELECT id, fname, lname, homeworld, age FROM bsg_people WHERE id = ?";
         var sql = "SELECT id, first_name, last_name, GPA, graduation_date, major FROM Student WHERE id = ?"
@@ -33,26 +44,34 @@ module.exports = function(){
     /*Display all people. Requires web based javascript to delete users with AJAX*/
 
     router.get('/', function(req, res){
+        var callbackCount = 0;
         var context = {};
         context.jsscripts = ["deleteperson.js"];
         var mysql = req.app.get('mysql');
         getPeople(res, mysql, context, complete);
-        //getPlanets(res, mysql, context, complete);
+        getUnivs(res, mysql, context, complete);
         function complete(){
+            callbackCount++;
+            if(callbackCount >= 2){
                 res.render('people', context);
+            }
         }
     });
 
     /* Display one person for the specific purpose of updating people */
 
     router.get('/:id', function(req, res){
+        callbackCount = 0;
         var context = {};
-        context.jsscripts = ["updateperson.js"];
+        context.jsscripts = ["selectedplanet.js", "updateperson.js"];
         var mysql = req.app.get('mysql');
         getPerson(res, mysql, context, req.params.id, complete);
-        //getPlanets(res, mysql, context, complete);
+        getUnivs(res, mysql, context, complete);
         function complete(){
+            callbackCount++;
+            if(callbackCount >= 2) {
               res.render('update-person', context);
+            }
         }
     });
 

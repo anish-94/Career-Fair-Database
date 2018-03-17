@@ -3,7 +3,12 @@
   First name: <input type="text" name="first_name" value="{{Student.first_name}}"><br>
   Last name: <input type="text" name="last_name" value="{{Student.last_name}}"><br>
   GPA: <input type="float" name ="GPA" value="{{Student.GPA}}"><br>
-  Graduation date (IE: 2018-09-10) <input type="text" name="graduation_date" value="{{Student.graduation_date}}"><br>
-  Major <input type="text" name="major" value="{{Student.major}}"><br>
+  Graduation date: (e.g. 2018-09-10) <input type="text" name="graduation_date" value="{{Student.graduation_date}}"><br>
+  Major: <input type="text" name="major" value="{{Student.major}}"><br>
+  University: <select name="university">
+        {{#each univs}}
+        <option value="{{id}}">{{name}}</option>
+        {{/each}}
+    </select><br>
 </form>
 <button onclick="updatePerson({{Student.id}})">Update</button>
