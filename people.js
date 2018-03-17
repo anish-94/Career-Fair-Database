@@ -4,6 +4,7 @@ module.exports = function(){
 
     function getEvents(res, mysql, context, complete){
       mysql.pool.query("SELECT Event.id, name, location, date FROM Event", function(error, results, fields){
+      //mysql.pool.query("SELECT Event.id, Event.name, Event.location, Event.date, University.name FROM Event JOIN University ON (hosted_at_university=University.id)", function(error, results, fields){
           if(error){
               res.write(JSON.stringify(error));
               res.end();

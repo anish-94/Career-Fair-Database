@@ -26,6 +26,7 @@ CREATE TABLE `University`(
   `id` int(11) auto_increment not null,
   `name` varchar(255) not null,
   `location` varchar(255) not null,
+  unique key `name` (`name`),
   primary key (`id`)
 )ENGINE=InnoDB;
 
