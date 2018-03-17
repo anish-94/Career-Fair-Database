@@ -1,6 +1,6 @@
-/*  
-    Uses express, dbcon for database connection, body parser to parse form data 
-    handlebars for HTML templates  
+/*
+    Uses express, dbcon for database connection, body parser to parse form data
+    handlebars for HTML templates
 */
 
 var express = require('express');
@@ -17,7 +17,9 @@ app.set('view engine', 'handlebars');
 app.set('port', process.argv[2]);
 app.set('mysql', mysql);
 
+app.use('/list_of_events', require('./list_of_events.js'));
 app.use('/people', require('./people.js'));
+
 
 app.use(function(req,res){
   res.status(404);

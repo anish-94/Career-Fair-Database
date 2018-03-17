@@ -1,0 +1,42 @@
+{{#each foo}}
+{{this}}
+{{/each}}
+<!--
+<div>
+<h3> Add Company to Attend an Event </h3>
+
+    <form id="add_people_certificates" action="/people_certs" method="post">
+    Person: <select name='pid'>
+        {{#each people}}
+          <option value='{{pid}}'>{{fname}} {{lname}}</option>
+        {{/each}}
+    </select>
+    <br>
+    Certificates:<sup>Multi-select</sup> <select multiple name="certs">
+        {{! We display title but the value that is submitted through the form is actually the certificate's id }}
+        {{#each certificates}}
+        <option value="{{cid}}">{{title}}</option>
+        {{/each}}
+    </select><br>
+    <input type="submit" value="Submit">
+    </form>
+
+</div>
+<br/>
+  -->
+<h3> Companies Attending All Events </h3>
+<table>
+    <thead>
+        <th>Name</th>
+        <th>Certificate</th>
+    </thead>
+    <tbody>
+        {{#each companies_at_events}}
+        <tr>
+            <td>{{company}}</td>
+            <td>{{event}}</td>
+        </tr>
+        {{/each}}
+
+    </tbody>
+</table>
