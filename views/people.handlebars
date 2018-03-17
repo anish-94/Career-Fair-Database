@@ -14,11 +14,11 @@
     <tbody>
         {{#each people}}
         <tr>
-            <td>{{first_name}}</td>
-            <td>{{last_name}}</td>
-            <td>{{GPA}}</td>
-            <td>{{graduation_date}}</td>
-            <td>{{major}}</td>
+            <td>{{first_name}}&nbsp</td>
+            <td>{{last_name}}&nbsp</td>
+            <td>{{GPA}}&nbsp</td>
+            <td>{{graduation_date}}&nbsp</td>
+            <td>{{major}}&nbsp</td>
 
             <td><button onclick="deletePerson({{id}})">Delete</button></td>
             <td><a href="/people/{{id}}">Update</a></td>
@@ -45,13 +45,15 @@
         <th>Name</th>
         <th>Location</th>
         <th>Date</th>
+        <th>Hosted at: </th>
     </thead>
     <tbody>
         {{#each events}}
         <tr>
-            <td>{{name}}</td>
-            <td>{{location}}</td>
-            <td>{{date}}</td>
+            <td>{{name}}&nbsp</td>
+            <td>{{location}}&nbsp</td>
+            <td>{{date}}&nbsp</td>
+            <td>{{university}}&nbsp</td>
           <!--
             <td><button onclick="deletePerson({{id}})">Delete</button></td>
             <td><a href="/people/{{id}}">Update</a></td>
