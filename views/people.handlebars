@@ -29,11 +29,11 @@
     </tbody>
 
 
-    <form id="addperson" action="/people" method="post">
+    <form id="addperson" action="/people/student" method="post">
     First name: <input type="text" name="first_name"><br>
     Last name: <input type="text" name="last_name"><br>
     GPA: <input type="float" name ="GPA"><br>
-    Graduation date: (e.g. 2018-09-10) <input type="text" name="graduation_date"><br>
+    Graduation date: (e.g. 2018-09-10) <input type="date" name="graduation_date"><br>
     Major: <input type="text" name="major"><br>
     University: <select name="university">
         {{#each univs}}
@@ -46,7 +46,7 @@
 
 </table>
 
-<h3>Events</h3>
+<h2>Events</h2>
 <table>
     <thead>
         <th>Name</th>
@@ -62,21 +62,34 @@
             <td>{{date}}&nbsp</td>
             <td>{{university}}&nbsp</td>
 
-            <td><button onclick="deletePerson({{id}})">Delete</button></td>
             <!--
+            <td><button onclick="deletePerson({{id}})">Delete</button></td>
+
             <td><a href="/people/{{id}}">Update</a></td>
           -->
         </tr>
         {{/each}}
     </tbody>
-  <!--
-    <form id="addperson" action="/people" method="post">
-    First name: <input type="text" name="first_name"><br>
-    Last name: <input type="text" name="last_name"><br>
-    GPA: <input type="float" name ="GPA"><br>
-    Graduation date (IE: 2018-09-10) <input type="text" name="graduation_date"><br>
-    Major <input type="text" name="major"><br>
-    <input type="submit" value="Submit">
+
+    <form id="addevent" action="/people/event" method="post">
+      Name: <input type="text" name="name"><br>
+      Location: <input type="text" name="location"><br>
+      Event date: (e.g. 2018-09-10) <input type="date" name="date"><br>
+      Hosted At: <select name="university">
+          {{#each univs}}
+          <option value="{{id}}">{{name}}</option>
+          {{/each}}
+      </select><br>
+      <input type="submit" value="Submit">
     </form>
-  -->
+
 </table>
+
+<h2>Add A New University</h2>
+
+<form id="adduniversity" action="/people/university" method="post">
+  Name of university: <input type="text" name="name"><br>
+  Location: <input type="text" name="location"><br>
+  </select><br>
+  <input type="submit" value="Submit">
+</form>

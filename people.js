@@ -89,10 +89,38 @@ module.exports = function(){
 
     /* Adds a person, redirects to the people page after adding */
 
-    router.post('/', function(req, res){
+    router.post('/student', function(req, res){
         var mysql = req.app.get('mysql');
-        var sql = "INSERT INTO Student (first_name, last_name, GPA, graduation_date, major, attends_university) VALUES (?,?,?,?,?,?)";
+        var sql ="INSERT INTO Student (first_name, last_name, GPA, graduation_date, major, attends_university) VALUES (?,?,?,?,?,?)" ;
         var inserts = [req.body.first_name, req.body.last_name, req.body.GPA, req.body.graduation_date, req.body.major, req.body.university];
+        sql = mysql.pool.query(sql,inserts,function(error, results, fields){
+            if(error){
+                res.write(JSON.stringify(error));
+                res.end();
+            }else{
+                res.redirect('/people');
+            }
+        });
+    });
+
+    router.post('/event', function(req, res){
+        var mysql = req.app.get('mysql');
+        var sql ="INSERT INTO Event (name, location, date, hosted_at_university) VALUES (?,?,?,?)" ;
+        var inserts = [req.body.name, req.body.location, req.body.date, req.body.university];
+        sql = mysql.pool.query(sql,inserts,function(error, results, fields){
+            if(error){
+                res.write(JSON.stringify(error));
+                res.end();
+            }else{
+                res.redirect('/people');
+            }
+        });
+    });
+
+    router.post('/university', function(req, res){
+        var mysql = req.app.get('mysql');
+        var sql ="INSERT INTO University (name, location) VALUES (?,?)" ;
+        var inserts = [req.body.name, req.body.location];
         sql = mysql.pool.query(sql,inserts,function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
