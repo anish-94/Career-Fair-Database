@@ -32,7 +32,7 @@
     <form id="addperson" action="/people/student" method="post">
     First name: <input type="text" name="first_name"><br>
     Last name: <input type="text" name="last_name"><br>
-    GPA: <input type="float" name ="GPA"><br>
+    GPA: <input type="number" step="0.01" name="GPA" min="0" max="4"><br>
     Graduation date: (e.g. 2018-09-10) <input type="date" name="graduation_date"><br>
     Major: <input type="text" name="major"><br>
     University: <select name="university">
