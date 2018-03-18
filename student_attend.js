@@ -76,6 +76,22 @@ module.exports = function(){
         res.redirect('/student_attend');
     });
 
-
+    router.delete('/event/:eventID/student/:studentID', function(req, res){
+        console.log('here in delete router');
+        console.log(req.params.eventID);
+        console.log(req.params.studentID);
+        var mysql = req.app.get('mysql');
+        var sql = "DELETE FROM Attends_Student WHERE eventID = ? AND studentID = ?";
+        var inserts = [req.params.eventID, req.params.studentID];
+        sql = mysql.pool.query(sql, inserts, function(error, results, fields){
+            if(error){
+                res.write(JSON.stringify(error));
+                res.status(400); 
+                res.end(); 
+            }else{
+                res.status(202).end();
+            }
+        })
+    })
     return router;
 }();
