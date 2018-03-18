@@ -18,6 +18,7 @@ app.set('port', process.argv[2]);
 app.set('mysql', mysql);
 
 app.use('/list_of_events', require('./list_of_events.js'));
+app.use('/student_attend', require('./student_attend.js'));
 app.use('/people', require('./people.js'));
 
 
