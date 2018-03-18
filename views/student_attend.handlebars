@@ -1,0 +1,46 @@
+<h1><a href="/people/">People</a></h1>
+{{#each foo}}
+{{this}}
+{{/each}}
+
+
+<div>
+<h3> Add Student to Attend an Event </h3>
+
+    <form id="add_event" action="/student_attend" method="post">
+    Events: <select name='eventID'>
+        {{#each events}}
+          <option value='{{eventID}}'>{{name}}</option>
+        {{/each}}
+    </select>
+    <br>
+    Students:<sup>Multi-select</sup><select multiple name="studentID">
+        {{!-- We display title but the value that is submitted through the form is actually the certificate's id --}}
+        {{#each students}}
+          <option value="{{studentID}}">{{first_name}} {{last_name}}</option>
+        {{/each}}
+    </select><br>
+    <input type="submit" value="Submit">
+    </form>
+
+</div>
+<br/>
+
+<h3> Students Attending All Events </h3>
+<table>
+    <thead>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Event</th>
+    </thead>
+    <tbody>
+        {{#each students_at_events}}
+        <tr>
+            <td>{{fname}}</td>
+            <td>{{lname}}</td>
+            <td>{{event}}</td>
+        </tr>
+        {{/each}}
+
+    </tbody>
+</table>
