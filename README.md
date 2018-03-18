@@ -2,4 +2,4 @@
 
 <img src="career-fair-er-diagram.png">
 
-<img src"schema.png">
+![ScreenShot](/schema.png)
