@@ -8,16 +8,16 @@
 <h3> Add Company to Attend an Event </h3>
 
     <form id="add_event" action="/list_of_events" method="post">
-    Events: <select name='Event'>
+    Events: <select name='eventID'>
         {{#each events}}
-          <option value='{{id}}'>{{name}}</option>
+          <option value='{{eventID}}'>{{name}}</option>
         {{/each}}
     </select>
     <br>
-    Companies:<select name="Company">
+    Companies:<sup>Multi-select</sup><select multiple name="companyID">
         {{!-- We display title but the value that is submitted through the form is actually the certificate's id --}}
         {{#each companies}}
-          <option value="{{id}}">{{name}}</option>
+          <option value="{{companyID}}">{{name}}</option>
         {{/each}}
     </select><br>
     <input type="submit" value="Submit">
@@ -29,8 +29,8 @@
 <h3> Companies Attending All Events </h3>
 <table>
     <thead>
-        <th>Name</th>
-        <th>Certificate</th>
+        <th>Company</th>
+        <th>Event</th>
     </thead>
     <tbody>
         {{#each companies_at_events}}

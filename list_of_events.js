@@ -4,7 +4,7 @@ module.exports = function(){
 
     function getEvents(res, mysql, context, complete){
       //mysql.pool.query("SELECT Event.id, name, location, date FROM Event", function(error, results, fields){
-      mysql.pool.query("SELECT id, name, location, date FROM Event", function(error, results, fields){
+      mysql.pool.query("SELECT id AS eventID, name, location, date FROM Event", function(error, results, fields){
           if(error){
               res.write(JSON.stringify(error));
               res.end();
@@ -16,7 +16,7 @@ module.exports = function(){
 
     function getCompanies(res, mysql, context, complete){
         //mysql.pool.query("SELECT bsg_people.id, fname, lname, bsg_planets.name AS homeworld, age FROM bsg_people INNER JOIN bsg_planets ON homeworld = bsg_planets.id", function(error, results, fields){
-        mysql.pool.query("SELECT id, name, hiring_major FROM Company", function(error, results, fields){
+        mysql.pool.query("SELECT id AS companyID, name, hiring_major FROM Company", function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
                 res.end();
@@ -60,46 +60,20 @@ module.exports = function(){
 
     /* Adds a person, redirects to the people page after adding */
 
-    router.post('/student', function(req, res){
+    router.post('/', function(req, res){
         var mysql = req.app.get('mysql');
-        var sql ="INSERT INTO Student (first_name, last_name, GPA, graduation_date, major, attends_university) VALUES (?,?,?,?,?,?)" ;
-        var inserts = [req.body.first_name, req.body.last_name, req.body.GPA, req.body.graduation_date, req.body.major, req.body.university];
-        sql = mysql.pool.query(sql,inserts,function(error, results, fields){
-            if(error){
-                res.write(JSON.stringify(error));
-                res.end();
-            }else{
-                res.redirect('/list_of_events');
-            }
-        });
-    });
-
-    router.post('/event', function(req, res){
-        var mysql = req.app.get('mysql');
-        var sql ="INSERT INTO Event (name, location, date, hosted_at_university) VALUES (?,?,?,?)" ;
-        var inserts = [req.body.name, req.body.location, req.body.date, req.body.university];
-        sql = mysql.pool.query(sql,inserts,function(error, results, fields){
-            if(error){
-                res.write(JSON.stringify(error));
-                res.end();
-            }else{
-                res.redirect('/list_of_events');
-            }
-        });
-    });
-
-    router.post('/university', function(req, res){
-        var mysql = req.app.get('mysql');
-        var sql ="INSERT INTO University (name, location) VALUES (?,?)" ;
-        var inserts = [req.body.name, req.body.location];
-        sql = mysql.pool.query(sql,inserts,function(error, results, fields){
-            if(error){
-                res.write(JSON.stringify(error));
-                res.end();
-            }else{
-                res.redirect('/list_of_events');
-            }
-        });
+        var companyID = req.body.companyID;
+        var eventID = req.body.eventID;
+        for (let company of companyID){
+          var sql ="INSERT INTO Attends_Company (companyID, eventID) VALUES (?,?)" ;
+          var inserts = [company, eventID];
+          sql = mysql.pool.query(sql,inserts,function(error, results, fields){
+              if(error){
+                 console.log("error");
+              }
+          });
+        }
+        res.redirect('/list_of_events');
     });
 
 

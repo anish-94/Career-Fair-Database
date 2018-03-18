@@ -68,11 +68,19 @@ CREATE TABLE `Attends_Company`(
 )ENGINE=InnoDB;
 
 INSERT INTO Student (`first_name`, `last_name`, `GPA`, `graduation_date`, `major`, `attends_university`) VALUES
-					("Adam", "Lowd", 3.23,  "2019-03-06", "Computer Science",2),
-					("Jaden", "Smith", 3.23, "2024-06-15", "Business",1),
-					("Diane", "Nguyen", 3.23,"2018-06-15", "Computer Science",5),
-					("Mister", "Peanutbutter", 3.23,"2019-03-15","Business",3),
-					("Todd", "Chavez", 3.23, "2020-06-15", "Business",4);
+					("Adam", "Lowd", 4.0,  "2019-03-06", "Computer Science",2),
+					("Jaden", "Smith", 3.2, "2024-06-15", "Business",1),
+					("Diane", "Nguyen", 3.3,"2018-06-15", "Computer Science",5),
+					("Mister", "Peanutbutter", 3.5,"2019-03-15","Business",3),
+          ("Paul", "Blart", 3.4,  "2019-03-06", "Computer Science",2),
+          ("Joe", "Bobbert", 3.23, "2024-12-15", "Business",1),
+          ("Hue", "Huey", 3.23,"2018-08-15", "Computer Science",5),
+          ("Mister", "Bubblegum", 3.23,"2019-01-15","architecture",3),
+          ("Joe", "Biden", 2.3,  "2019-02-06", "Computer Engineer",2),
+          ("Will", "Smith", 1.3, "2024-06-19", "Business",1),
+          ("Queen", "Elizabeth", 2.7,"2018-06-14", "architecture",5),
+          ("Emperor", "Palpatine", 1.3,"2019-02-15","Business",3),
+					("Jeff", "Sessions", 1.9, "2020-05-15", "Economics",4);
 
 INSERT INTO University (`name`, `location`) VALUES
 						("Oregon State University", "Corvallis, OR"),
@@ -92,7 +100,10 @@ INSERT INTO Company (`name`, `hiring_major`, `location`) VALUES
 					("Deloitte", "Business", "New York, NY"),
 					("Amazon", "Computer Science", "Seattle, WA"),
 					("Spotify", "Computer Science", "New York, NY"),
-					("Capital One", "Business", "Seattle, WA");
+          ("FakeCompany1", "Business", "New York, NY"),
+          ("FakeCompany1", "Computer Science", "Seattle, WA"),
+          ("FakeCompany1", "Computer Science", "New York, NY"),
+					("FakeCompany1 One", "Business", "Seattle, WA");
 
 INSERT INTO Attends_Student (`studentID`, `eventID`) VALUES
 			(1, 1), (2, 2), (3, 3), (4, 4), (5, 5);
