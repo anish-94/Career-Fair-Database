@@ -155,6 +155,20 @@ module.exports = function(){
         });
     });
 
+    router.post('/company', function(req, res){
+        var mysql = req.app.get('mysql');
+        var sql ="INSERT INTO Company (name, location, hiring_major) VALUES (?,?,?)" ;
+        var inserts = [req.body.name, req.body.location, req.body.hiring_major];
+        sql = mysql.pool.query(sql,inserts,function(error, results, fields){
+            if(error){
+                res.write(JSON.stringify(error));
+                res.end();
+            }else{
+                res.redirect('/people');
+            }
+        });
+    });
+
     /* The URI that update data is sent to in order to update a person */
 
     router.put('/:id', function(req, res){

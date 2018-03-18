@@ -28,7 +28,7 @@ module.exports = function(){
     }
 
     function getCompaniesAtEvents(res, mysql, context, complete){
-    sql = "SELECT eventID, companyID, Event.name AS event, Company.name AS company FROM Event INNER JOIN Attends_Company ON (Event.id = Attends_Company.eventID) INNER JOIN Company ON (Attends_Company.companyID = Company.id) ORDER BY Event.name"
+    sql = "SELECT eventID, companyID, Event.name AS event, Company.name AS company, Company.location AS location, Company.hiring_major AS hiring_major FROM Event INNER JOIN Attends_Company ON (Event.id = Attends_Company.eventID) INNER JOIN Company ON (Attends_Company.companyID = Company.id) ORDER BY Event.name"
      mysql.pool.query(sql, function(error, results, fields){
         if(error){
             res.write(JSON.stringify(error));

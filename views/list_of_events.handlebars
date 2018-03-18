@@ -32,13 +32,18 @@
 <table border="1">
     <thead>
         <th>Company</th>
+        <th>Location of Company</th>
+        <th>Majors Company is Searching For</th>
         <th>Event</th>
     </thead>
     <tbody>
         {{#each companies_at_events}}
         <tr>
             <td>{{company}}</td>
+            <td>{{location}}</td>
+            <td>{{hiring_major}}</td>
             <td>{{event}}</td>
+
             <td><button onclick="deleteCompany({{eventID}},{{companyID}})">Delete</button></td>
         </tr>
         {{else}}
@@ -46,4 +51,4 @@
         {{/each}}
 
     </tbody>
-</ta
+</table>
