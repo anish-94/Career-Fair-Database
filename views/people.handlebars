@@ -4,7 +4,7 @@
 {{#each foo}}
 {{this}}
 {{/each}}
-<table>
+<table border="1">
     <thead>
         <th>First Name</th>
         <th>Last Name</th>
@@ -47,8 +47,21 @@
 
 </table>
 
+<h3>Filer Students by University:</h3>
+<form id="filterpeople" action="/people/" method="post">
+University: <select name="university">
+    <option value=0>Show All</option>
+    {{#each univs}}
+    <option value="{{id}}">{{name}}</option>
+    {{/each}}
+</select><br>
+<input type="submit" value="Submit">
+</form>
+
+
+
 <h2>Events</h2>
-<table>
+<table border="1">
     <thead>
         <th>Name</th>
         <th>Location</th>

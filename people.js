@@ -14,9 +14,13 @@ module.exports = function(){
       });
     }
 
-    function getPeople(res, mysql, context, complete){
+    function getPeople(res, mysql, context, complete, filter){
         //mysql.pool.query("SELECT bsg_people.id, fname, lname, bsg_planets.name AS homeworld, age FROM bsg_people INNER JOIN bsg_planets ON homeworld = bsg_planets.id", function(error, results, fields){
-        mysql.pool.query("SELECT Student.id, first_name, last_name, GPA, graduation_date, major, University.name AS university FROM Student JOIN University on (attends_university=University.id)", function(error, results, fields){
+        var sql = "SELECT Student.id, first_name, last_name, GPA, graduation_date, major, University.name AS university FROM Student JOIN University on (attends_university=University.id)"
+        if(filter != null){
+          sql = "SELECT Student.id, first_name, last_name, GPA, graduation_date, major, University.name AS university FROM Student JOIN University on (attends_university=University.id) WHERE attends_university=\"" + filter + "\"";
+        }
+        mysql.pool.query(sql, function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
                 res.end();
@@ -59,7 +63,7 @@ module.exports = function(){
         var context = {};
         context.jsscripts = ["deleteperson.js"];
         var mysql = req.app.get('mysql');
-        getPeople(res, mysql, context, complete);
+        getPeople(res, mysql, context, complete, null);
         getUnivs(res, mysql, context, complete);
         getEvents(res, mysql, context, complete);
         function complete(){
@@ -101,6 +105,26 @@ module.exports = function(){
                 res.redirect('/people');
             }
         });
+    });
+
+    router.post('/', function(req, res){
+      var callbackCount = 0;
+      var context = {};
+      context.jsscripts = ["deleteperson.js"];
+      var mysql = req.app.get('mysql');
+      var filter = req.body.university;
+      if(filter == 0){
+        filter = null;
+      }
+      getPeople(res, mysql, context, complete, filter);
+      getUnivs(res, mysql, context, complete);
+      getEvents(res, mysql, context, complete);
+      function complete(){
+          callbackCount++;
+          if(callbackCount >= 3){
+              res.render('people', context);
+          }
+      }
     });
 
     router.post('/event', function(req, res){
