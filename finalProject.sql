@@ -101,14 +101,14 @@ INSERT INTO Company (`name`, `hiring_major`, `location`) VALUES
 					("Amazon", "Computer Science", "Seattle, WA"),
 					("Spotify", "Computer Science", "New York, NY"),
           ("FakeCompany1", "Business", "New York, NY"),
-          ("FakeCompany1", "Computer Science", "Seattle, WA"),
-          ("FakeCompany1", "Computer Science", "New York, NY"),
-					("FakeCompany1 One", "Business", "Seattle, WA");
+          ("FakeCompany2", "Computer Science", "Seattle, WA"),
+          ("FakeCompany3", "Computer Science", "New York, NY"),
+					("FakeCompany4", "Business", "Seattle, WA");
 
 INSERT INTO Attends_Student (`studentID`, `eventID`) VALUES
-			(1, 1), (2, 2), (3, 3), (4, 4), (5, 5);
+			(1, 1), (2, 2), (3, 3), (4, 4), (5, 5), (6, 1), (7, 2), (8, 3), (9, 4), (10, 5), (11, 1), (12, 2), (13, 2);
 
 INSERT INTO Attends_Company (`companyID`, `eventID`) VALUES
-			(1, 1), (2, 2), (3, 3), (4, 4), (3, 5);
+			(1, 1), (2, 2), (3, 3), (4, 4), (5, 5), (6, 1), (7, 2);
 
 SET FOREIGN_KEY_CHECKS=1;
