@@ -37,7 +37,10 @@
         <tr>
             <td>{{company}}</td>
             <td>{{event}}</td>
+            <td><button onclick="deleteCompany({{eventID}},{{companyID}})">Delete</button></td>
         </tr>
+        {{else}}
+        <b> No companies attending. </b>
         {{/each}}
 
     </tbody>

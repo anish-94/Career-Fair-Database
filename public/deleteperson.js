@@ -23,3 +23,20 @@ function deleteStudent(eventID, studentID){
       }
   })
 };
+
+function deleteCompany(eventID, companyID){
+	console.log('made it here');
+  $.ajax({
+      url: '/list_of_events/event/' + eventID + '/company/' + companyID,
+      type: 'DELETE',
+      success: function(result){
+          if(result.responseText != undefined){
+            alert(result.responseText)
+          }
+          else {
+            window.location.reload(true)
+          } 
+      }
+  })
+
+};
