@@ -28,7 +28,7 @@ module.exports = function(){
     }
 
     function getCompaniesAtEvents(res, mysql, context, complete){
-    sql = "SELECT eventID, companyID, Event.name AS event, Company.name AS company FROM Event INNER JOIN Attends_Company ON (Event.id = Attends_Company.eventID) INNER JOIN Company ON (Attends_Company.companyID = Company.id)"
+    sql = "SELECT eventID, companyID, Event.name AS event, Company.name AS company FROM Event INNER JOIN Attends_Company ON (Event.id = Attends_Company.eventID) INNER JOIN Company ON (Attends_Company.companyID = Company.id) ORDER BY Event.name"
      mysql.pool.query(sql, function(error, results, fields){
         if(error){
             res.write(JSON.stringify(error));
@@ -77,17 +77,17 @@ module.exports = function(){
     });
 
     router.delete('/event/:eventID/company/:companyID', function(req, res){
-        console.log('here in delete router');
-        console.log(req.params.eventID);
-        console.log(req.params.companyID);
+        //console.log('here in delete router');
+        //console.log(req.params.eventID);
+        //console.log(req.params.companyID);
         var mysql = req.app.get('mysql');
-        var sql = "DELETE FROM Attends_Employee WHERE eventID = ? AND companyID = ?";
-        var inserts = [req.params.eventID, req.params.studentID];
+        var sql = "DELETE FROM Attends_Company WHERE eventID = ? AND companyID = ?";
+        var inserts = [req.params.eventID, req.params.companyID];
         sql = mysql.pool.query(sql, inserts, function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
-                res.status(400); 
-                res.end(); 
+                res.status(400);
+                res.end();
             }else{
                 res.status(202).end();
             }

@@ -9,7 +9,7 @@ function deletePerson(id){
 };
 
 function deleteStudent(eventID, studentID){
-	console.log('made it here');
+	//console.log('made it here');
   $.ajax({
       url: '/student_attend/event/' + eventID + '/student/' + studentID,
       type: 'DELETE',
@@ -19,13 +19,13 @@ function deleteStudent(eventID, studentID){
           }
           else {
             window.location.reload(true)
-          } 
+          }
       }
   })
 };
 
 function deleteCompany(eventID, companyID){
-	console.log('made it here');
+	//console.log('made it here');
   $.ajax({
       url: '/list_of_events/event/' + eventID + '/company/' + companyID,
       type: 'DELETE',
@@ -35,7 +35,7 @@ function deleteCompany(eventID, companyID){
           }
           else {
             window.location.reload(true)
-          } 
+          }
       }
   })
 
