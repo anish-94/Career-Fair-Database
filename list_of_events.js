@@ -64,15 +64,14 @@ module.exports = function(){
         var mysql = req.app.get('mysql');
         var companyID = req.body.companyID;
         var eventID = req.body.eventID;
-        for (let company of companyID){
           var sql ="INSERT INTO Attends_Company (companyID, eventID) VALUES (?,?)" ;
-          var inserts = [company, eventID];
+          var inserts = [companyID, eventID];
           sql = mysql.pool.query(sql,inserts,function(error, results, fields){
               if(error){
                  console.log("error");
               }
           });
-        }
+
         res.redirect('/list_of_events');
     });
 

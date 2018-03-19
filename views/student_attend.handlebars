@@ -16,7 +16,7 @@
         {{/each}}
     </select>
     <br>
-    Students:<sup>Multi-select</sup><select multiple name="studentID">
+    Students:<select name="studentID">
         {{!-- We display title but the value that is submitted through the form is actually the certificate's id --}}
         {{#each students}}
           <option value="{{studentID}}">{{first_name}} {{last_name}}</option>

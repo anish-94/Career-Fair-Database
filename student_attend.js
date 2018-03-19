@@ -62,22 +62,20 @@ module.exports = function(){
 
     router.post('/', function(req, res){
         var mysql = req.app.get('mysql');
+
         var studentID = req.body.studentID;
         var eventID = req.body.eventID;
-        for (let student of studentID){
           var sql ="INSERT INTO Attends_Student (studentID, eventID) VALUES (?,?)" ;
-          var inserts = [student, eventID];
+          var inserts = [studentID, eventID];
           sql = mysql.pool.query(sql,inserts,function(error, results, fields){
               if(error){
                  console.log("error");
               }
           });
-        }
         res.redirect('/student_attend');
     });
 
     router.delete('/event/:eventID/student/:studentID', function(req, res){
-        console.log('here in delete router');
         //console.log(req.params.eventID);
         //console.log(req.params.studentID);
         var mysql = req.app.get('mysql');
